@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:env.properties"/>
+    </bean>
+
+    <context:component-scan base-package="net.pureessence.example"/>
+
+    <util:constant id="choice1" static-field="net.pureessence.example.AbstractTasklet.CHOICE_1"/>
+    <util:constant id="choice2" static-field="net.pureessence.example.AbstractTasklet.CHOICE_2"/>
+
+    <util:map id="tasklet1Executions" value-type="net.pureessence.example.TaskletExecution">
+        <entry key-ref="choice1">
+            <bean class="net.pureessence.example.TaskletExecution">
+                <property name="methodName" value="methodOne"/>
+                <property name="parameters">
+                    <list>
+                        <bean class="java.lang.String">
+                            <constructor-arg>
+                                <value>tasklet1 arg1</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="java.lang.String">
+                            <constructor-arg>
+                                <value>tasklet1 arg2</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="net.pureessence.example.Type" factory-method="valueOf">
+                            <constructor-arg>
+                                <value>TYPE_1</value>
+                            </constructor-arg>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </entry>
+        <entry key-ref="choice2">
+            <bean class="net.pureessence.example.TaskletExecution">
+                <property name="methodName" value="methodOne"/>
+                <property name="parameters">
+                    <list>
+                        <bean class="java.lang.String">
+                            <constructor-arg>
+                                <value>tasklet1 arg1</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="java.lang.Integer">
+                            <constructor-arg>
+                                <value>12399</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="net.pureessence.example.Type" factory-method="valueOf">
+                            <constructor-arg>
+                                <value>TYPE_3</value>
+                            </constructor-arg>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </entry>
+    </util:map>
+
+    <util:map id="tasklet2Executions" value-type="net.pureessence.example.TaskletExecution">
+        <entry key-ref="choice1">
+            <bean class="net.pureessence.example.TaskletExecution">
+                <property name="methodName" value="methodThree"/>
+                <property name="parameters">
+                    <list>
+                        <bean class="java.lang.Integer">
+                            <constructor-arg>
+                                <value>1</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="java.lang.Integer">
+                            <constructor-arg>
+                                <value>2</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="java.lang.String">
+                            <constructor-arg>
+                                <value>tasklet2 arg3</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="net.pureessence.example.Type" factory-method="valueOf">
+                            <constructor-arg>
+                                <value>TYPE_2</value>
+                            </constructor-arg>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </entry>
+        <entry key-ref="choice2">
+            <bean class="net.pureessence.example.TaskletExecution">
+                <property name="methodName" value="methodTwo"/>
+                <property name="parameters">
+                    <list>
+                        <bean class="java.lang.String">
+                            <constructor-arg>
+                                <value>tasklet2 arg1</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="net.pureessence.example.Type" factory-method="valueOf">
+                            <constructor-arg>
+                                <value>TYPE_2</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="java.lang.Integer">
+                            <constructor-arg>
+                                <value>2</value>
+                            </constructor-arg>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </entry>
+    </util:map>
+
+    <util:map id="tasklet3Executions" value-type="net.pureessence.example.TaskletExecution">
+        <entry key-ref="choice1">
+            <bean class="net.pureessence.example.TaskletExecution">
+                <property name="methodName" value="methodThree"/>
+                <property name="parameters">
+                    <list>
+                        <bean class="java.lang.Integer">
+                            <constructor-arg>
+                                <value>31</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="java.lang.Integer">
+                            <constructor-arg>
+                                <value>32</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="java.lang.String">
+                            <constructor-arg>
+                                <value>tasklet3 arg3</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="net.pureessence.example.Type" factory-method="valueOf">
+                            <constructor-arg>
+                                <value>TYPE_3</value>
+                            </constructor-arg>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </entry>
+        <entry key-ref="choice2">
+            <bean class="net.pureessence.example.TaskletExecution">
+                <property name="methodName" value="methodOne"/>
+                <property name="parameters">
+                    <list>
+                        <bean class="java.lang.String">
+                            <constructor-arg>
+                                <value>tasklet3 arg1</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="java.lang.String">
+                            <constructor-arg>
+                                <value>tasklet3 arg2</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="net.pureessence.example.Type" factory-method="valueOf">
+                            <constructor-arg>
+                                <value>TYPE_3</value>
+                            </constructor-arg>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </entry>
+    </util:map>
+
+    <util:map id="tasklet4Executions" value-type="net.pureessence.example.TaskletExecution">
+        <entry key-ref="choice1">
+            <bean class="net.pureessence.example.TaskletExecution">
+                <property name="methodName" value="methodThree"/>
+                <property name="parameters">
+                    <list>
+                        <bean class="java.lang.Integer">
+                            <constructor-arg>
+                                <value>41</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="java.lang.Integer">
+                            <constructor-arg>
+                                <value>42</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="java.lang.String">
+                            <constructor-arg>
+                                <value>tasklet4 arg3</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="net.pureessence.example.Type" factory-method="valueOf">
+                            <constructor-arg>
+                                <value>TYPE_3</value>
+                            </constructor-arg>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </entry>
+        <entry key-ref="choice2">
+            <bean class="net.pureessence.example.TaskletExecution">
+                <property name="methodName" value="methodOne"/>
+                <property name="parameters">
+                    <list>
+                        <bean class="java.lang.String">
+                            <constructor-arg>
+                                <value>tasklet4 arg1</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="java.lang.Integer">
+                            <constructor-arg>
+                                <value>12399</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="net.pureessence.example.Type" factory-method="valueOf">
+                            <constructor-arg>
+                                <value>TYPE_3</value>
+                            </constructor-arg>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </entry>
+    </util:map>
+
+    <util:map id="tasklet5Executions" value-type="net.pureessence.example.TaskletExecution">
+        <entry key-ref="choice1">
+            <bean class="net.pureessence.example.TaskletExecution">
+                <property name="methodName" value="methodThree"/>
+                <property name="parameters">
+                    <list>
+                        <bean class="java.lang.String">
+                            <constructor-arg>
+                                <value>51</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="java.lang.Integer">
+                            <constructor-arg>
+                                <value>52</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="java.lang.String">
+                            <constructor-arg>
+                                <value>tasklet5 arg3</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="net.pureessence.example.Type" factory-method="valueOf">
+                            <constructor-arg>
+                                <value>TYPE_3</value>
+                            </constructor-arg>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </entry>
+        <entry key-ref="choice2">
+            <bean class="net.pureessence.example.TaskletExecution">
+                <property name="methodName" value="methodOne"/>
+                <property name="parameters">
+                    <list>
+                        <bean class="java.lang.String">
+                            <constructor-arg>
+                                <value>tasklet5 arg1</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="java.lang.Integer">
+                            <constructor-arg>
+                                <value>123599</value>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="net.pureessence.example.Type" factory-method="valueOf">
+                            <constructor-arg>
+                                <value>TYPE_3</value>
+                            </constructor-arg>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </entry>
+    </util:map>
+</beans>
